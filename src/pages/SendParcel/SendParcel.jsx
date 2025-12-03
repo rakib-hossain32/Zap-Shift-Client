@@ -16,8 +16,8 @@ const SendParcel = ({ isAddParcel }) => {
   } = useForm();
   // console.log(servicesCenter);
   const axiosSecure = useAxiosSecure();
-  const { user, } = useAuth();
-  const navigate = useNavigate()
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const duplicateRegion = servicesCenter.map((s) => s.region);
   // console.log(duplicateRegion)
@@ -34,11 +34,12 @@ const SendParcel = ({ isAddParcel }) => {
   };
 
   const handleSendParcel = (data) => {
-    // console.log(data);
+    console.log(data);
     const isDocument = data.parcelType === "document";
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
     const parcelWeight = parseFloat(data.parcelWeight);
 
+    console.log(parcelWeight);
     let cost = 0;
 
     if (isDocument) {
@@ -49,13 +50,14 @@ const SendParcel = ({ isAddParcel }) => {
       } else {
         const minPrice = isSameDistrict ? 110 : 150;
         const extraWeight = parcelWeight - 3;
+        console.log(extraWeight)
         const extraCharge = isSameDistrict
           ? extraWeight * 40
           : extraWeight * 40 + 40;
         cost = minPrice + extraCharge;
       }
     }
-    // console.log("cost", cost);
+    console.log("cost", cost);
     data.cost = cost;
 
     Swal.fire({
@@ -73,7 +75,7 @@ const SendParcel = ({ isAddParcel }) => {
           console.log(res.data);
           if (res.data.insertedId) {
             toast.success("Parcel has created. Please Pay!");
-            navigate('/dashboard/deliveries')
+            navigate("/dashboard/deliveries");
           }
         });
 

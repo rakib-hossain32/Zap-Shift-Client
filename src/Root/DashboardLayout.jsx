@@ -8,18 +8,30 @@ import {
   DollarSign,
   ChevronDown,
   BellIcon,
+  Motorbike,
 } from "lucide-react";
-
 
 import NavItem from "../pages/Dashboard/NavItem";
 
 import { NavLink, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
+import useRole from "../hooks/useRole";
+import { Commet } from "react-loading-indicators";
 
 export default function DashboardLayout() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const { user } = useAuth();
+  const { role, isLoading } = useRole();
+  console.log(role)
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Commet color={["#32cd32", "#327fcd", "#cd32cd", "#cd8032"]} />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#F4F7F6] text-slate-700 font-sans">
@@ -74,18 +86,28 @@ export default function DashboardLayout() {
                 label="Deliveries"
                 collapsed={isCollapsed}
               />
-              <NavItem
-                to="/dashboard/rider-management"
-                icon={<Package size={16} />}
-                label="Invoices"
-                collapsed={isCollapsed}
-              />
-              <NavItem
-                to="/stores"
-                icon={<User size={16} />}
-                label="Stores"
-                collapsed={isCollapsed}
-              />
+              {role.role === "admin" && (
+                <>
+                  <NavItem
+                    to="/dashboard/rider-management"
+                    icon={<Package size={16} />}
+                    label="Rider Management"
+                    collapsed={isCollapsed}
+                  />
+                  <NavItem
+                    to="/dashboard/assign-riders"
+                    icon={<Motorbike size={16} />}
+                    label="Assign Rider"
+                    collapsed={isCollapsed}
+                  />
+                  <NavItem
+                    to="/dashboard/users-management"
+                    icon={<User size={16} />}
+                    label="Users Management"
+                    collapsed={isCollapsed}
+                  />
+                </>
+              )}
               <NavItem
                 to="/pricing"
                 icon={<DollarSign size={16} />}

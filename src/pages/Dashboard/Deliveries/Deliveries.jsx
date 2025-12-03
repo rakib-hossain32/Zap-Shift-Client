@@ -137,7 +137,7 @@ export default function Deliveries() {
           <thead className="bg-gray-50 ">
             <tr>
               <th className="p-4">Cons. ID</th>
-              <th className="p-4">Store</th>
+
               <th className="p-4">Recipient Info</th>
               <th className="p-4">Delivery Status</th>
               <th className="p-4">Amount</th>
@@ -152,7 +152,7 @@ export default function Deliveries() {
                   {/* {row.id} */}
                   {parcel._id}
                 </td>
-                <td className="p-4">{/* {row.store} */}</td>
+
                 <td className="p-4">
                   <p className="font-semibold">
                     {/* {row.name} */}
@@ -165,7 +165,7 @@ export default function Deliveries() {
                     
                     `}
                 >
-                  {/* {row.status} */}
+                  {parcel?.deliveryStatus}
                 </td>
                 <td className="p-4 text-sm text-gray-600">
                   {/* {row.amount.cod && <p>COD ৳ {row.amount.cod}</p>}
@@ -212,7 +212,10 @@ export default function Deliveries() {
                       Pay
                     </NavLink>
                   )}
-                  <Link to={'/dashboard/payment-history'} className="bg-gray-100 text-gray-600 px-4 py-1 rounded-lg cursor-pointer">
+                  <Link
+                    to={"/dashboard/payment-history"}
+                    className="bg-gray-100 text-gray-600 px-4 py-1 rounded-lg cursor-pointer"
+                  >
                     View
                   </Link>
                   <button

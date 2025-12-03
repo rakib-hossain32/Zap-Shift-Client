@@ -65,7 +65,7 @@ export default function RiderManagement() {
             <tr className="bg-gray-100 border-b">
               <th className="p-3 font-bold ">SN.</th>
               <th className="p-3 font-bold">Rider Info</th>
-              <th className="p-3 font-bold">Phone</th>
+              <th className="p-3 font-bold">Work Status</th>
               <th className="p-3 font-bold">Status</th>
               <th className="p-3 font-bold">Action</th>
             </tr>
@@ -96,7 +96,17 @@ export default function RiderManagement() {
                     {rider.riderDistrict}
                   </p>
                 </td>
-                <td className="p-3">{rider.phone}</td>
+                <td>
+                  <span
+                    className={`font-semibold px-3 py-1 rounded-full text-white ${
+                      rider.workStatus === "available"
+                        ? "bg-green-600"
+                        : "bg-red-600"
+                    }`}
+                  >
+                    {rider.workStatus || 'not-available'}
+                  </span>
+                </td>
 
                 <td className="p-3">
                   <span
@@ -136,17 +146,14 @@ export default function RiderManagement() {
                     </button>
 
                     <button
-                      disabled={
-                        rider.status === "approved" ||
-                        rider.status === "rejected"
-                      }
+                      
                       onClick={() => handleDelete(rider)}
                       className={`flex items-center gap-2 
     bg-red-600 text-white px-3 py-2 rounded-lg shadow-md
     hover:bg-red-700 cursor-pointer
 
    
-    disabled:cursor-not-allowed 
+     
    
   `}
                     >
