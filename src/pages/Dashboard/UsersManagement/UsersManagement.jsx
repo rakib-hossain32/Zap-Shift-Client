@@ -83,9 +83,9 @@ export default function UsersManagement() {
       });
   };
 
-  const handleDelete = (id) => {
-    // if (window.confirm("Are you sure you want to delete this user?")) 
-  };
+  // const handleDelete = (id) => {
+  //   // if (window.confirm("Are you sure you want to delete this user?")) 
+  // };
 
   if (isLoading) {
     return (
@@ -184,7 +184,7 @@ export default function UsersManagement() {
                       )}
 
                       <button
-                        onClick={() => handleDelete(u._id)}
+                        // onClick={() => handleDelete(u._id)}
                         title="Delete user"
                         className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md"
                       >
@@ -247,7 +247,7 @@ export default function UsersManagement() {
                   )}
 
                   <button
-                    onClick={() => handleDelete(u._id)}
+                    // onClick={() => handleDelete(u._id)}
                     className="flex-1 bg-red-600 text-white px-3 py-2 rounded-md flex items-center justify-center gap-2"
                   >
                     <Trash2 size={16} /> Delete

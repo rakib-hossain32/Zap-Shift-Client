@@ -136,7 +136,7 @@ export default function Deliveries() {
         <table className="w-full text-left">
           <thead className="bg-gray-50 ">
             <tr>
-              <th className="p-4">Cons. ID</th>
+              <th className="p-4">Tracking ID</th>
 
               <th className="p-4">Recipient Info</th>
               <th className="p-4">Delivery Status</th>
@@ -148,10 +148,12 @@ export default function Deliveries() {
           <tbody>
             {parcels.map((parcel, index) => (
               <tr className="border-t " key={index}>
-                <td className="p-4  max-w-36 break-all">
-                  {/* {row.id} */}
-                  {parcel._id}
-                </td>
+                <Link to={`/parcel-track/${parcel.trackingId}`}>
+                  <td className="p-4  max-w-36 break-all cursor-pointer hover:underline">
+                    {/* {row.id} */}
+                    {parcel.trackingId}
+                  </td>
+                </Link>
 
                 <td className="p-4">
                   <p className="font-semibold">

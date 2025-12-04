@@ -47,10 +47,11 @@ const AssignRiders = () => {
       riderId: rider._id,
       riderEmail: rider.email,
       riderName: rider.riderName,
+      trackingId: selectedParcel.trackingId,
     };
 
     axiosSecure
-      .patch(`/parcels/${selectedParcel._id}`, riderAssignInfo)
+      .patch(`/parcels/${selectedParcel._id}/assign`, riderAssignInfo)
       .then((res) => {
         if (res.data.modifiedCount) {
           refetch();
@@ -59,7 +60,7 @@ const AssignRiders = () => {
       });
   };
 
-  console.log(riders);
+  // console.log(riders);
 
   return (
     <div className="w-full">

@@ -9,6 +9,8 @@ import {
   ChevronDown,
   BellIcon,
   Motorbike,
+  ClipboardCheck,
+  MapPinCheck,
 } from "lucide-react";
 
 import NavItem from "../pages/Dashboard/NavItem";
@@ -23,7 +25,7 @@ export default function DashboardLayout() {
 
   const { user } = useAuth();
   const { role, isLoading } = useRole();
-  console.log(role)
+  // console.log(role);
 
   if (isLoading) {
     return (
@@ -86,7 +88,26 @@ export default function DashboardLayout() {
                 label="Deliveries"
                 collapsed={isCollapsed}
               />
-              {role.role === "admin" && (
+              {/* rider links */}
+              {role === "rider" && (
+                <>
+                  <NavItem
+                    to="/dashboard/assigned-deliveries"
+                    icon={<ClipboardCheck size={16} />}
+                    label="Assigned Deliveries"
+                    collapsed={isCollapsed}
+                  />
+                  <NavItem
+                    to="/dashboard/completed-deliveries"
+                    icon={<MapPinCheck size={16} />}
+                    label="Completed Deliveries"
+                    collapsed={isCollapsed}
+                  />
+                </>
+              )}
+
+              {/* admin links */}
+              {role === "admin" && (
                 <>
                   <NavItem
                     to="/dashboard/rider-management"
